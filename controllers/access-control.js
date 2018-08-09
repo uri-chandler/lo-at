@@ -1,8 +1,9 @@
-// our data-access layer
-const dal = require('../data-access/access-control');
+const jwt = require('jsonwebtoken');
+const dal = require('../data-access/access-control');  // our data-access layer
 
 
 // constants
+const TWENTY_MIN = 60 * 20; // seconds times minutes
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'abc123';
 const CREDENTIALS_STATUS = {
     NO_USER: -1,
@@ -40,13 +41,27 @@ async function hasUser(username) {
 }
 
 
+/**
+ * Creates a new user in our database
+ */
 async function createNewUser(username, password) {
+    // TODO: Normally, we'd have some input validation here
     await dal.createNewUser(username, password);
 }
+
+
+/**
+ * Creates a new access token
+ */
+function createNewAccessToken(username) {
+    return jwt.sign(username, ACCESS_TOKEN_SECRET);
+}
+
 
 
 module.exports = {
     checkCredentials,
     hasUser,
-    createNewUser
+    createNewUser,
+    createNewAccessToken
 };

@@ -11,11 +11,13 @@ routes.post('/signup', async (req, res) => {
     }
     else {
         await controller.createNewUser(req.body.username, req.body.password);
+
+        const accessToken = controller.createNewAccessToken(req.body.username);
+        res.set('authorization', 'bearer ' + accessToken);
+
         res.json({status: 'ok', message: 'user created successfully'});
     }
 });
-
-
 
 routes.post('/login', async (req, res) => {
     const credentialsStatus = await controller.checkCredentials(
@@ -26,6 +28,8 @@ routes.post('/login', async (req, res) => {
     switch (credentialsStatus) {
         case 1:
             res.json({status: 'ok', message: 'login successful'});
+            const accessToken = controller.createNewAccessToken(req.body.username);
+            res.set('authorization', 'bearer ' + accessToken);
             break;
         case 0:
             res.json({status: 'error', message: 'invalid username or password'});
@@ -38,7 +42,8 @@ routes.post('/login', async (req, res) => {
 });
 
 routes.get('/logout', (req, res) => {
-    res.end('user wants to logout');
+    res.removeHeader('authorization');
+    res.json({status: 'ok', message: 'you are now logged out'});
 });
 
 
