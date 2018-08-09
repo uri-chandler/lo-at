@@ -27,6 +27,11 @@ for (const namespace in routes)
     app.use('/api/v1', routes[namespace]);
 
 
+// static assets
+app.use(express.static('bower_components'));
+app.use(express.static('client'));
+
+
 // handle 404
 app.use((req, res) => {
     res.status(404).end('Ani lo babit... leh mipo!');
