@@ -1,6 +1,7 @@
 // imports
 const Toolog = require('toolog');
 const express = require('express');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 
 
@@ -10,11 +11,15 @@ const log = new Toolog('lo-at');
 
 
 // constants
-const PORT = process.env.LOAT_PORT || 3000;
+const PORT = process.env.APP_PORT || 3000;
 
 
 // we all like a nice CLI banner from time to time..
 log.banner('Welcome to Lo-At!');
+
+
+// basic body parsing
+app.use(bodyParser.json());
 
 
 // add api routes
