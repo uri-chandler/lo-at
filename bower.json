@@ -1,0 +1,21 @@
+{
+  "name": "lo-at",
+  "description": "Challenge Accepted!",
+  "main": "app.js",
+  "authors": [
+    "Uri Chandler"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/ujc/lo-at",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1"
+  }
+}
