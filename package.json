@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "watch": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,8 @@
     "express": "^4.16.3",
     "sqlite": "^2.9.2",
     "toolog": "0.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }

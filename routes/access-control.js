@@ -1,6 +1,11 @@
 const { Router } = require('express');
+
 const routes = new Router();
 
-routes.get('/');
+routes.get('/', (req, res) => {
+    res.end('access-control');
+});
 
-modules.exports = routes;
+const router = new Router();
+router.use('/access-control', routes);
+module.exports = router;
